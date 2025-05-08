@@ -1,0 +1,39 @@
+{% extends "base/main.html" %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+   
+    {% for client in clients %}
+    <div class="container">
+        <div class="profile-header">
+            <img src="{{client.profile_pic.url}}" alt="Profile Picture">
+            <h1>{{client.name}}</h1>
+            <p>Your Profession</p>
+        </div>
+        <div class="profile-content">
+            <h2>About Me</h2>
+            <p>{{client.bio}}</p>
+            <h2>Contact</h2>
+            <p>Email:{{client.email}}</p>
+            <p>Phone:{{client.phone}}</p>
+            <h2>Experience</h2>
+            
+        </div>
+    </div>
+    {% endfor %}
+    {% block footer %}
+    {% endblock  %}
+    
+    
+</body>
+</html>
+{% endblock  %}

@@ -1,5 +1,37 @@
-{% include "base/main.html" %}
-<title>Ecom</title>
+{% extends "base/main.html" %}
+
 {% block content %}
-store
+<title>Store</title>
+<body style='background-color:white;color:black;'> 
+<navbar>
+    <div class="navbar">
+
+        <a href="{% url 'checkout' %}" > Checkout</a>
+        <a href="{% url 'profile' %}" > Profile</a>
+        <a href="{% url 'cart' %}" > Cart</a>
+        <a href="{% url 'logout' %}" > Log out!</a>
+        <h3>Hello, {{user.client.name}}</h3>
+    </div>
+</navbar>
+
+<div style =" display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 1px;
+  
+  padding: 1px;">
+ {% for product in products %}
+ <div class="row" style="display:row; gap:10px;">
+  <div class="col-lg-4" style='background-color:white;display:row; gap:10px;'>
+    <img src="{{product.image.url}}" class="thumbnail" alt="" style="width:300px;height:300px;">
+    <div class="box-element product">
+      <h6>{{product.name}}</h6>
+      <hr>
+      <button class="btn btn-outline-secondary add-btn">Add to cart</button>
+      <a class="btn btn-outline-success">View</a>
+      <h4 style="display:inline-block;float:right;">{{product.price|floatformat:2}} $</h4>
+    </div>
+  </div>
+</div>
+  {% endfor %}
+</body>
 {% endblock  %}

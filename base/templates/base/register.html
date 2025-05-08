@@ -1,0 +1,75 @@
+<body>
+<h2>Sign UP!</h2>
+<style>
+        body{
+            justify-self:center; 
+            justify-items:center;
+            width:100px;
+            height:100px;
+            display:block;
+            font-family: sans-serif;
+            background-color:black;
+            color:aqua;
+        }
+        h2{
+            justify-self:center;
+        }
+        span{
+            background-color:red;
+            
+        }
+        div{
+            justify-items:center;
+            
+            color:grey;
+            
+            padding-top:10px;  
+        }
+        input, button{
+            outline:0px;
+            background-color:light-grey;
+            color:black;
+            width: 200px;
+            height: 30px;
+            padding: 5px;
+            border-radius:5px;
+            border-width:0px;
+        }
+    
+    
+    
+</style>
+<div>
+ <form method ="POST" action="">
+    {% csrf_token %}
+    
+    <input type='input', name='username', placeholder='Username...' ,{{form.username}}
+    <br>
+     <br>
+     <input type='input', name='first_name', placeholder='First Name...' ,{{form.first_name}}
+    <br><br>
+    
+    <input type='input', name='last_name', placeholder='Last Name...' ,{{form.last_name}}
+    <br><br>
+    
+    <input type='email', name='email', placeholder='Email...' ,{{form.email}}
+    <br><br>
+    <input type='password', name='password1', placeholder='password...' ,{{form.password1}}
+    
+    <br><br>
+    
+    <input type='password', name='password2', placeholder='Confirm password...'{{form.password2}}
+    <br><br>
+ 
+    {% block content %}
+   
+    {{message.error}}
+   
+    {% endblock content %}
+
+
+
+    <button style="color:white;background-color:green;"  type="submit" name="register">Create Account</button>
+</form>  
+</div>  
+</body>
