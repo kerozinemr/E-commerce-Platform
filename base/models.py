@@ -13,7 +13,7 @@ class Client(models.Model):
     email = models.EmailField(max_length=200, null=True)
     bio = models.CharField(max_length=900)
     experession = models.CharField(max_length=10)
-    profile_pic = models.ImageField(default ="images/profile_pic.jpg",null=True, blank=True,upload_to='ecom/profile_images/')
+    profile_pic = models.ImageField(storage=S3Boto3Storage(),default ="images/profile_pic.jpg",null=True, blank=True,upload_to='ecom/profile_images/')
     
     def __str__(self):
         return self.name
@@ -22,11 +22,11 @@ class Product(models.Model):
     name = models.CharField(max_length=200, null =True,blank =True)    
     price = models.FloatField(null= True , blank=True)
     description = models.CharField(max_length=400,null=True, blank=True)
-    image = models.ImageField(null=True, blank=True,upload_to='ecom/products_images')
+    image = models.ImageField(storage=S3Boto3Storage(),null=True, blank=True,upload_to='ecom/products_images')
     digital = models.BooleanField(null=True,blank=True, default=False)
-    product_sec_img1 = models.ImageField(null=True, blank=True,upload_to='ecom/products_images')
-    product_sec_img2 = models.ImageField(null=True, blank=True,upload_to='ecom/products_images')
-    product_sec_img3 = models.ImageField(null=True, blank=True,upload_to='ecom/products_images')
+    product_sec_img1 = models.ImageField(storage=S3Boto3Storage(),null=True, blank=True,upload_to='ecom/products_images')
+    product_sec_img2 = models.ImageField(storage=S3Boto3Storage(),null=True, blank=True,upload_to='ecom/products_images')
+    product_sec_img3 = models.ImageField(storage=S3Boto3Storage(),null=True, blank=True,upload_to='ecom/products_images')
     
     
     def __str__(self):
