@@ -1,1 +1,1 @@
-gunicorn base.wsgi:application
+gunicorn ecom.wsgi:application
