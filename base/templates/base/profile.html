@@ -12,25 +12,27 @@
 </head>
 <body>
    
-    {% for client in clients %}
+    
     <div class="container">
         <div class="profile-header">
-            <img src="{{client.profile_pic.url}}" alt="Profile Picture">
-            <h1>{{client.name}}</h1>
+            <img src="{{user.client.profile_pic.url}}" alt="Profile Picture">
+            <h1>{{user.client.name}}</h1>
             <p>Your Profession</p>
         </div>
         <div class="profile-content">
             <h2>About Me</h2>
-            <p>{{client.bio}}</p>
+            <p>{{user.client.bio}}</p>
             <h2>Contact</h2>
-            <p>Email:{{client.email}}</p>
-            <p>Phone:{{client.phone}}</p>
+            <p>Email:{{user.client.email}}</p>
+            <p>Phone:{{user.client.phone}}</p>
             <h2>Experience</h2>
             
         </div>
     </div>
-    {% endfor %}
+   
+
     {% block footer %}
+
     {% endblock  %}
     
     

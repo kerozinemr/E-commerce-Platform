@@ -1,37 +1,287 @@
 {% extends "base/main.html" %}
-
 {% block content %}
 <title>Store</title>
-<body style='background-color:white;color:black;'> 
-<navbar>
-    <div class="navbar">
+<style>
+/* Base styles for all screen sizes */
+html, body {
+  font-size: 1.1rem;
+}
 
-        <a href="{% url 'checkout' %}" > Checkout</a>
-        <a href="{% url 'profile' %}" > Profile</a>
-        <a href="{% url 'cart' %}" > Cart</a>
-        <a href="{% url 'logout' %}" > Log out!</a>
-        <h3>Hello, {{user.client.name}}</h3>
-    </div>
-</navbar>
+@media (max-width: 600px) {
+  html, body {
+    font-size: 50px;
+  }
+}
 
-<div style =" display: grid;
-  grid-template-columns: auto auto auto auto;
-  gap: 1px;
+.container {
+  max-width: 1200px;
+  min-height: auto;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.container {
+  background-color: #f8f9fa;
+  padding: 10px 0;
+  margin-bottom: 20px;
+}
+
+.container a {
+  text-decoration: none;
+  color: #333;
+  padding: 8px 12px;
+  margin: 0 5px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.container a:hover {
+  background-color: #e9ecef;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.card-img-top {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  background: #f8f8f8;
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px 8px 0 0;
+  max-width: 220px;
+}
+
+@media (max-width: 600px) {
+  .card-img-top {
+    max-width: 120px;
+    margin: 16px auto 8px auto;
+    border-radius: 6px 6px 0 0;
+  }
+  .card-body {
+    padding-top: 0;
+  }
+}
+
+.card-body {
+  padding: 15px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
   
-  padding: 1px;">
- {% for product in products %}
- <div class="row" style="display:row; gap:10px;">
-  <div class="col-lg-4" style='background-color:white;display:row; gap:10px;'>
-    <img src="{{product.image.url}}" class="thumbnail" alt="" style="width:300px;height:300px;">
-    <div class="box-element product">
-      <h6>{{product.name}}</h6>
-      <hr>
-      <button class="btn btn-outline-secondary add-btn">Add to cart</button>
-      <a class="btn btn-outline-success">View</a>
-      <h4 style="display:inline-block;float:right;">{{product.price|floatformat:2}} $</h4>
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.card-text {
+  color: #666;
+  margin-bottom: 15px;
+  flex: 1;
+}
+
+.card-actions {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btn {
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.btn-outline-secondary {
+  border: 1px solid #6c757d;
+  color: #6c757d;
+  background: transparent;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn-outline-success {
+  border: 1px solid #28a745;
+  color: #28a745;
+  background: transparent;
+}
+
+.btn-outline-success:hover {
+  background-color: #28a745;
+  color: white;
+}
+
+.price {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #28a745;
+}
+
+.btn-group, .btn-group * {
+  font-size: 1.1rem;
+}
+
+@media (max-width: 600px) {
+  .btn-group, .btn-group * {
+    font-size: 0.8rem;
+  }
+}
+
+/* Responsive breakpoints */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 10px;
+  }
+  
+  .container {
+    padding: 8px 0;
+  }
+  
+  .navbar a {
+    padding: 6px 8px;
+    margin: 0 2px;
+    font-size: 0.9rem;
+  }
+  
+  .products-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    padding: 15px 0;
+  }
+  
+  .card-body {
+    padding: 12px;
+  }
+  
+  .card-title {
+    font-size: 1rem;
+  }
+  
+  .card-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .btn {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+  
+  .price {
+    text-align: center;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .container {
+    text-align: center;
+  }
+  
+  .container button {
+    display: block;
+    margin: 5px 0;
+  }
+  
+  .card-img-top {
+    height: 180px;
+  }
+}
+
+/* Tablet styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .products-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+  }
+}
+a{
+  text-decoration: none;
+}
+</style>
+
+<body style='background-color:silver;color:black;'> 
+<div class="container">
+  <div class="btn-group" style="display: flex;align-items: stretch;" role="group" aria-label="Basic example">
+    <button type="button" class="btn btn-primary"> <h6 id="greeting">Hello, <span id="guest-span">Guest</span>  <span id="user-span" class="d-none">{{user.client.name}}</span></h6></button>
+    <button type="button" class="btn btn-secondary"><a href="{% url 'profile' %}"><i class="fa-solid fa-user fa-2xl"> profile</i></a></button>
+    <button type="button" class="btn btn-secondary" style="min-width: 50px;">
+      <a href="{% url 'cart' %}"><i class="fa-solid fa-cart-shopping fa-2xl"><p style="float: right;margin-bottom: 1px;margin-top: 0;color: #28a745;">{{cartItems}}</p></i></a>
+    
+    </button>
+    <button type="button" class="btn btn-danger d-none" id="logout"><a href="{% url 'logout' %}">Log out!</a></button>
+    <button type="button" class="btn btn-warning " id="login"><a href="{% url 'login' %}"><i class="fa-solid fa-right-to-bracket fa-2xl"> login</i></a></button>
+  </div>
+ 
+
+  <div class="products-grid">
+    {% for product in products %}
+    <div class="card">
+      <img class=" img-fluid" src="{{product.imageURL}}" alt="{{product.name}}">
+      <div class="card-body">
+        <h5 class="card-title">{{product.name}}</h5>
+        <hr>
+        <p class="card-text">{{product.description}}</p>
+        <div class="card-actions">
+          <button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart"><i class="fa-solid fa-cart-plus fa-2xl"></i>Add To Cart</button>
+          <a class="btn btn-outline-success" href='#'>View</a>
+          <span class="price">{{product.price|floatformat:2}} $</span>
+        </div>
+      </div>
     </div>
+    {% endfor %}
   </div>
 </div>
-  {% endfor %}
+<div style="background-color: #5f5e5e;margin:auto auto auto auto;">
+<footer style="justify-self: center;">
+  <button type="button" style="margin-top:5%;margin-bottom: 5%;" class="btn btn-danger"><a href="https://www.instagram.com/mazzcode1/"><i class="fa-brands fa-square-instagram fa-2xl"style="color: black;"></i></a></button>
+  <button type="button" style="margin-top:5%;margin-bottom: 5%;" class="btn btn-light"><a href="https://www.upwork.com/freelancers/~01b050cfe462f3223b?mp_source=share"style="color:black;"><i class="fa-brands fa-square-upwork fa-2xl"></i></a></button>
+  <button type="button" style="margin-top:5%;margin-bottom: 5%;" class="btn btn-dark"><a href="https://github.com/kerozinemr" target="_blank" style="color: rgb(249, 245, 245);"><i class="fa-brands fa-square-github fa-2xl"></i></a></button>
+</footer>
+  </div>
+<script type="text/javascript">
+  user= {{request.user}}
+  if(user != 'Anonymous'){
+    document.getElementById('user-span').classList.remove("d-none");
+    document.getElementById('logout').classList.remove("d-none");
+    document.getElementById('login').classList.add("d-none");
+    document.getElementById('guest-span').classList.add("d-none");
+  }
+</script>
 </body>
-{% endblock  %}
+{% endblock %}
