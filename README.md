@@ -1,8 +1,10 @@
-# e-commerce simple website
- this is an e-commerce simple website 
- cart and checkout functionalities
- PayPal payment integrations
- Bootstrap 
- Profile(view and edit with image)
- CRUD 
- Reset password feature
+# E-commerce Platform
+E-commerce Platform
+Full-stack Django Application
+
+Built complete online store with shopping cart functionality and user authentication
+Integrated PayPal payment gateway for secure transactions
+Implemented order management system with admin dashboard
+Features: Product catalog, user profiles, order history, payment processing
+Technologies: Django, PostgreSQL, JavaScript, PayPal API, Bootstrap, AWS S3 Buckets
+Live Demo: https://ecom-cwu4.onrender.com/
