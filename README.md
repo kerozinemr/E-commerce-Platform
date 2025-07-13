@@ -6,4 +6,5 @@ Built complete online store with shopping cart functionality and user authentica
 Integrated PayPal payment gateway for secure transactions
 Implemented order management system with admin dashboard
 Features: Product catalog, user profiles, order history, payment processing
-Technologies: Django, PostgreSQL, JavaScript, PayPal API, Bootstrap
+Technologies: Django, PostgreSQL, JavaScript, PayPal API, Bootstrap, AWS S3 Buckets
+Live Demo: https://ecom-cwu4.onrender.com/
