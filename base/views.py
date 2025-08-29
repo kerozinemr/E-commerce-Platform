@@ -111,12 +111,13 @@ def updateItem(request):
     else:
         
         product = Product.objects.get(id=productId)
-        order, created = Order.objects.get_or_create(client=Blank ,complete=False)
+        order, created = Order.objects.get_or_create(client=blank ,complete=False)
         orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)
     
     
     if action == 'add':
-        orderItem.quantity = (orderItem.quantity + 1) # type: ignore
+        orderItem.quantity = (orderItem.quantity + 1) 
+        print('add button clicked')
     elif action =='remove':
          orderItem.quantity = (orderItem.quantity - 1) # type: ignore
     

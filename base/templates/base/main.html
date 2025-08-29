@@ -48,7 +48,6 @@ function getCookie(name) {
 let cart = JSON.parse(getCookie('cart'))
 if(cart == undefined){
     cart = {}
-    
     document.cookie = 'cart=' + JSON.stringify(cart)+ ";domain;path=/"
 }
 
@@ -64,6 +63,5 @@ if(cart == undefined){
 
 {% endblock  %}
 <script type="text/javascript" src="{% static 'js/cart.js' %}">
-    
 </script>
 </body>

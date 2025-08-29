@@ -20,10 +20,10 @@
        <div>ITEM: {{item.product.name}}</div>
        <div style="flex:2">PRICE: {{item.product.price|floatformat:2}} $</div>
        <div style="flex:1">
-        <button class="btn btn-outline-secondary" data-product={{item.product.id}} data-action="add" class="chg-quantity update-cart"><i class="fa-solid fa-angle-up fa-lg"></i></button>
+        <button class="btn btn-outline-secondary chg-quantity update-cart" data-product={{item.product.id}} data-action="add" ><i class="fa-solid fa-angle-up fa-lg"></i></button>
         x{{item.quantity}}
         
-        <button class="btn btn-outline-secondary" data-product={{item.product.id}} data-action="remove" class="chg-quantity update-cart"><i class="fa-solid fa-angle-down fa-lg"></i></button>
+        <button class="btn btn-outline-secondary chg-quantity update-cart" data-product={{item.product.id}} data-action="remove" ><i class="fa-solid fa-angle-down fa-lg"></i></button>
      </div>
        <img src="{{item.product.imageURL}}" class="thumbnail" alt="" style="width:100px;height:100px;border-radius:5px;">
        
