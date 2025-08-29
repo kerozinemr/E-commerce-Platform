@@ -1,6 +1,3 @@
-
-from email.mime import image
-from pyexpat import model
 from django.db import models
 from django.contrib.auth.models import User
 from storages.backends.s3boto3 import S3Boto3Storage

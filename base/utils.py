@@ -1,5 +1,5 @@
 import json
-from .models import *
+from . models import *
 
 
 def cookieCart(request):
