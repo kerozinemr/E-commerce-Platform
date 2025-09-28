@@ -4,8 +4,8 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 <title>Checkout</title>
-<body style="background-color:black;color:pink;">
-    <button type="button" class="btn btn-outline-warning"><a style="text-decoration: none;color: rgb(255, 255, 255);"  href="{% url 'store' %}"><i class="fa-solid fa-arrow-left fa-xl"></i> Back To Shopping</a></button>
+<body style="background-color:white;color:black;">
+    <button type="button" class="btn btn-outline-warning"><a style="text-decoration: none;color: rgba(0, 0, 0, 1);"  href="{% url 'store' %}"><i class="fa-solid fa-arrow-left fa-xl"></i> Back To Shopping</a></button>
     <div id='form-wrapper' class="">
             <form id='form' >  
                 {% csrf_token %}
@@ -35,27 +35,27 @@
          </div><hr>
         <div style="justify-self:end;
             justify-items:center;
-            background-color:blue;
+            background-color:white;
             margin:50px 50px 10px 10px;
-            border-radius:10px;;"
+            border-radius:10px;"
 
             >
-            <h2>items: {{order.get_cart_items}} </h2>
-            <h2>Total: {{order.get_cart_total|floatformat:2}} $</h2><br>
             </div>
             <div style="
-                background-color:aqua;
-                color:red;
+                background-color:white;
+                color:black;
                 display:row;
                 margin:50px 50px 10px 10px;
-                border-radius:10px;"
+                border-radius:5px;
+                border: 2px solid black;"
             >
             {% for item in items %}
-                <div style="width:100px;">
-                    <div style="flex: 2;"><img style="width:100px;height:100px;" src="{{item.product.imageURL}}"></div><hr>
-                    <div style="flex: 2;"><h2>{{item.product.name}}</h2></div>
-                    <div style="flex: 1;">{{item.product.price}} </div>
-                    <div style="flex: 1;">{{item.quantity}} </div>
+                <div style="width:100%;">
+                
+                    <div style=""><img style="width:50px;height:50px;" src="{{item.product.imageURL}}"></div>
+                    <div style=""><h2 style="font-size:1rem;">{{item.product.name}}</h2></div>
+                    <div style="flex: 1;">${{item.product.price}} </div>
+                    <div style="flex: 1;">x{{item.quantity}} </div><hr>
                 </div>
             {% endfor %}
         </div>

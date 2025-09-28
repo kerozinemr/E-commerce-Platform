@@ -41,9 +41,18 @@ function addCookieItem(productId, action){
     }
     
     document.cookie = 'cart=' + JSON.stringify(cart)+ ";domain;path=/"
-    location.reload()
+    
+    // Update the cart count in the UI
+    let cartCount = 0;
+    for (let item in cart) {
+        cartCount += cart[item]['quantity'];
+        console.log('cart count', cartCount)
+    }
+    document.getElementById('cart-count') = cartCount;
+    
 
 }
+
 
 
 
@@ -65,10 +74,12 @@ function updateUserOrder(productId, action){
         return response.json()
     })
 
-    .then(
-        
-        location.reload()
-    )
+    .then((data) => {
+    // Update cart count from server response
+    document.getElementById('cart-count').textContent = data.cartItems;
+    
+    console.log('server response:', data.cartItems);
+})
 
 }
 

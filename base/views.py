@@ -122,11 +122,15 @@ def updateItem(request):
          orderItem.quantity = (orderItem.quantity - 1) # type: ignore
     
     orderItem.save()
+    cart_items = order.get_cart_items
     
     if orderItem.quantity <= 0: # type: ignore
            orderItem.delete()
     print(client)
-    return JsonResponse('Item was added', safe=False  )
+    return JsonResponse({
+    'message': 'Item was added',
+    'cartItems': cart_items
+    }, safe=False)
 
 
 def processOrder(request):

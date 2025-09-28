@@ -41,9 +41,10 @@ html, body {
 
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
   padding: 20px 0;
+  margin-left:10px;
 }
 
 .card {
@@ -53,6 +54,10 @@ html, body {
   transition: transform 0.3s, box-shadow 0.3s;
   display: flex;
   flex-direction: column;
+  height: 100%;
+  background: white;
+  width:220px;
+  
 }
 
 .card:hover {
@@ -68,7 +73,11 @@ html, body {
   display: block;
   margin: 0 auto;
   border-radius: 8px 8px 0 0;
-  max-width: 220px;
+  
+}
+.img-fluid{
+  height:220px;
+  width:220px;
 }
 
 @media (max-width: 600px) {
@@ -83,7 +92,7 @@ html, body {
 }
 
 .card-body {
-  padding: 15px;
+  padding: 0.75rem;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -91,7 +100,7 @@ html, body {
 
 .card-title {
   
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   color: #333;
 }
 
@@ -219,7 +228,7 @@ html, body {
   }
   
   .card-img-top {
-    height: 180px;
+    height: 150px;
   }
 }
 
@@ -241,25 +250,26 @@ a{
     <button type="button" class="btn btn-primary"> <h6 id="greeting">Hello, <span id="guest-span">Guest</span>  <span id="user-span" class="d-none">{{user.client.name}}</span></h6></button>
     <button type="button" class="btn btn-secondary"><a href="{% url 'profile' %}"><i class="fa-solid fa-user fa-2xl"> profile</i></a></button>
     <button type="button" class="btn btn-secondary" style="min-width: 50px;">
-      <a href="{% url 'cart' %}"><i class="fa-solid fa-cart-shopping fa-2xl"><p style="float: right;margin-bottom: 1px;margin-top: 0;color: #28a745;">{{cartItems}}</p></i></a>
+      <a href="{% url 'cart' %}"><i class="fa-solid fa-cart-shopping fa-2xl"><p style="float: right;margin-bottom: 1px;margin-top: 0;color: #28a745;" id="cart-count">{{cartItems}}</p></i></a>
     
     </button>
     <button type="button" class="btn btn-danger d-none" id="logout"><a href="{% url 'logout' %}">Log out!</a></button>
-    <button type="button" class="btn btn-warning " id="login"><a href="{% url 'login' %}"><i class="fa-solid fa-right-to-bracket fa-2xl"> login</i></a></button>
+    <button type="button" class="btn btn-warning " id="login"><a href="{% url 'login' %}"><i class="fa-solid fa-right-to-bracket fa-2xl"> login </i></a></button>
   </div>
- 
+
+
 
   <div class="products-grid">
     {% for product in products %}
     <div class="card">
-      <img class=" img-fluid" src="{{product.imageURL}}" alt="{{product.name}}">
+      <img class="img-fluid" src="{{product.imageURL}}" alt="{{product.name}}">
       <div class="card-body">
         <h5 class="card-title">{{product.name}}</h5>
-        <hr>
+        
         <p class="card-text">{{product.description}}</p>
         <div class="card-actions">
           <button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart"><i class="fa-solid fa-cart-plus fa-2xl"></i>Add To Cart</button>
-          <a class="btn btn-outline-success" href='#'>View</a>
+          
           <span class="price">{{product.price|floatformat:2}} $</span>
         </div>
       </div>
