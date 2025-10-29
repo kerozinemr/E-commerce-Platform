@@ -136,14 +136,14 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+MEDIA_URL = '/static/images/' #this tells the browser what to look for
+MEDIA_ROOT = os.path.join(BASE_DIR, 'staticfiles/images') #this specify where the images are
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_URL = '/static/images/' #this tells the browser what to look for
-MEDIA_ROOT = os.path.join(BASE_DIR, 'base/static/images') #this specify where the images are
 
 
 
