@@ -87,8 +87,29 @@ def checkout(request):
 
 @login_required
 def profile(request):
-    clients = Client.objects.all() 
-    context =  {'clients': clients}
+    client = request.user.client
+    user = request.user
+    form = ClientForm(instance=client)
+    clients = Client.objects.get(user=user) 
+
+    if request.method == 'POST':
+        print("POST request received")
+        print("FILES:", request.FILES)
+        
+        form = ClientForm(request.POST, request.FILES, instance=client)
+        if form.is_valid():
+            print("Form is valid")
+            try:
+                form.save()
+                print("Form saved successfully")
+                
+            except Exception as e:
+                print(f"Error saving form: {e}")
+                
+        else:
+            print("Form errors:", form.errors)
+
+    context =  {'clients': clients, 'form':form}
     return render(request, 'base/profile.html',context)
     
     
